@@ -4,7 +4,7 @@ from PIL import ImageFont, ImageDraw, Image
 
 image = input("請輸入圖片檔名：")
 font = input("請輸入浮水印內容：")
-fontsize = int(input("請輸入浮水印尺寸"))
+fontsize = int(input("請輸入浮水印尺寸(px):"))
 
 pic = cv2.imread(image,1) #讀取一張圖像
 
