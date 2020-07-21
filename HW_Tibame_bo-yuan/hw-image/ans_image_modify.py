@@ -15,6 +15,3 @@ m2 = cv2.bitwise_not(m2) #黑白顛倒
 cv2.imshow("img 1",m2) #最終結果，得出白底黑字
 cv2.waitKey() #等待按鍵繼續執行
 cv2.destroyAllWindows #關閉所有視窗
-
-
-# m1-m2

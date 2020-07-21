@@ -71,9 +71,9 @@ class show_Main_Frame ( Note_Try.Main_Frame ):
     def FrameSize( self, event ): #設定textCtrl文字編輯器的尺寸
         # print(windows.GetSize())
         size=windows.GetSize() #先取得視窗的大小
-        width=size[0]-25 #些微調整，讓捲軸可以顯示
-        tall=size[1]-60
-        self.textCtrl.SetSize(width,tall) #設定textCtrl文字編輯器的尺寸
+        # width=size[0]-25 #些微調整，讓捲軸可以顯示
+        # tall=size[1]-60
+        self.textCtrl.SetSize(size) #設定textCtrl文字編輯器的尺寸
         event.Skip()
 
 

@@ -8,7 +8,7 @@ camera = cv2.VideoCapture("homework3.mp4")
 while camera.isOpened()==True:
     ret,m1=camera.read()
     if ret == True:
-        cv2.imshow("Image 1",m1)
+        # cv2.imshow("Image 1",m1)
         m2 = cv2.inRange(m1,(78,78,0),(200,200,83)) 
         m2 = cv2.dilate(m2,np.ones((80,100)))
         a,b = cv2.findContours(m2,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
