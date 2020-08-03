@@ -213,7 +213,75 @@ print("偶數:",even)
 print("奇數:",odd)
 print("5的倍數:",ten)
 '''
+'''
+#TODO:6.6本章習題   
+#第一題
+def s(n):
+    s = 0
+    for i in range(1,n+1):
+        s+=i/(i+1)
+    # print(s)
+    return s
+# s = (1/2)+(2/3)+(3/4)+(4/5)
+# print(s)
+def main():
+    # n = int(input("請輸入:"))
+    for n in range (1,21):
+        print(n,":","\t",s(n))   
+main()
 
+#第三題
+def distance(x1,y1,x2,y2):
+   return ((x2-x1)**2+(y2-y1)**2)**0.5
+# print(distance(1,1,10,10))
+def main():
+    x1=int(input("請輸入坐標軸第一點的x:"))
+    y1=int(input("請輸入坐標軸第一點的y:"))
+    x2=int(input("請輸入坐標軸第二點的x:"))
+    y2=int(input("請輸入坐標軸第二點的y:"))
+    print(distance(x1,y1,x2,y2))
+    main()
+main()
 
+#第四題
+def temperature(start,end):
+    for F in range(start,end+5,5):
+        C = (F-32)*5/9  
+        print("華氏:",F,":","\t",C)
+def main():
+    start = int(input("請輸入華氏起始溫度:"))
+    end = int(input("請輸入華氏結束溫度:"))
+    temperature(start,end)
+main()
 
-
+#第五題
+#小柯的票設為x
+#小丁的票設為y
+#小姚的票設為z
+x = 0
+y = 0
+z = 0
+drop = 0
+def menu(candidate):
+    global x,y,z,drop
+    if candidate == "小柯":
+        x+=1
+    if candidate == "小丁":
+        y+=1
+    if candidate == "小姚":
+        z+=1
+    else:
+        drop+=1
+    print("小柯的票:",x,"\t",
+        "小丁的票:",y,"\t",
+        "小姚的票:",z,"\t",
+        "廢票:",drop)
+def main():
+    t = 0
+    while t < 10:
+        candidate = input("請投下候選人:")
+        print("第幾次投票:",t+1)
+        menu(candidate)
+        t+=1
+main()
+'''
