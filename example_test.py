@@ -86,6 +86,13 @@ print(a)
 #第七題
 print(sum(range(0,100)))
 '''
+# 第十題
+def a(V1):
+    def b(V2):
+        return V1**V2
+    return b
+a1=a(5)
+print(a1(3))
 '''
 #1-6本章習題
 print("半徑為5的圓形周長",5*2*3.1416)

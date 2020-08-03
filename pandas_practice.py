@@ -22,9 +22,9 @@ data=pd.DataFrame({
     "salary":[3000,5000,4000]
 })
 #TODO:基本DataFrame操作
-# print(data)
+print(data)
 #取得特定的欄位
-print(data["name"])
+# print(data["name"])
 #取得特定的列
-# print("="*20)
-# print(data.iloc[0]) #印出第一列
+print("="*20)
+print(data.iloc[0]) #印出第一列
