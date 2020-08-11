@@ -86,6 +86,7 @@ print(a)
 #第七題
 print(sum(range(0,100)))
 '''
+'''
 # 第十題
 def a(V1):
     def b(V2):
@@ -93,6 +94,7 @@ def a(V1):
     return b
 a1=a(5)
 print(a1(3))
+'''
 '''
 #1-6本章習題
 print("半徑為5的圓形周長",5*2*3.1416)
@@ -112,7 +114,7 @@ print("面積:",area)
 print("周長:",周長)
 '''
 
-#TODO:3-7本章習題
+# TODO:3-7本章習題
 '''
 #第一題
 a = int(input("請輸入三角形的一個邊:"))
@@ -292,3 +294,100 @@ def main():
         t+=1
 main()
 '''
+'''
+# TODO:7.7本章習題
+# 第一題
+def count_the_letter(write_list, write_letter):
+    times = 0
+    for letter in write_list:
+        # print(letter)
+        if letter == write_letter:
+            times += 1
+    return times
+def main():
+    write_list = input("請輸入字串:")
+    write_letter = input("請輸入字母:")
+    return count_the_letter(write_list,write_letter)
+print(main())
+
+# 第五題
+def reverse(string):
+    list=[]
+    for i in range(len(string)-1,-1,-1):
+        list.append(string[i])
+    return "".join(list)
+def main():
+    string = input("請輸入字串:")
+    return reverse(string)
+print(main())
+'''
+'''
+# TODO:8.9本章習題
+# 第一題
+import random
+#提示使用者簽選六個大樂透號碼
+time_yours=0
+your_lotto = []
+while time_yours < 6:
+    your_number = int(input("請簽選大樂透號碼:"))
+    if your_number > 49:
+        print("此號碼大於49號，不可圈選!")
+    elif your_number not in your_lotto:
+        your_lotto.append(your_number)
+        time_yours += 1
+    elif your_number in your_lotto:
+        print("此號碼已圈選")
+your_lotto.sort()
+print("你簽選的大樂透號碼:",your_lotto)
+#以隨機亂數產生器產生大樂透號碼(1~49)
+time_g = 0
+goverment_lotto = []
+while time_g < 6:
+    goverment_number = random.randint(1,49)
+    if goverment_number not in goverment_lotto:
+        goverment_lotto.append(goverment_number)
+        time_g += 1
+    else:
+        pass
+goverment_lotto.sort()
+print("電腦產生的大樂透號碼:",goverment_lotto)
+#簽對了幾個號碼
+result_list = []
+correct = 0
+for result_number in your_lotto:
+    if result_number in goverment_lotto:
+        result_list.append(result_number)
+        correct += 1
+    else:
+        pass
+print("你簽對的號碼:",result_list)
+print("你簽對了幾個號碼:",correct)
+'''
+'''
+# 第二題
+import random
+#在biggest函式中找出最大值的元素及其索引
+def biggest(numList):
+    maximum,idx = max(numList),numList.index(max(numList))
+    return "最大值:"+str(maximum),"索引:"+str(idx+1)
+#在randomNum函式中以亂數產生器產生100個介於1~100個亂數，並置放於名為numList串列
+def randomNum():
+    numList = []
+    time = 0
+    while time < 100:
+        number = random.randint(1,100)
+        numList.append(number)
+        time += 1
+    numList.sort()
+    print(numList)
+    return biggest(numList) #pass list to biggest()
+print(randomNum())
+'''
+
+
+
+
+
+
+
+
