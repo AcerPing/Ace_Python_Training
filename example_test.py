@@ -362,8 +362,7 @@ for result_number in your_lotto:
         pass
 print("你簽對的號碼:",result_list)
 print("你簽對了幾個號碼:",correct)
-'''
-'''
+
 # 第二題
 import random
 #在biggest函式中找出最大值的元素及其索引
@@ -382,9 +381,203 @@ def randomNum():
     print(numList)
     return biggest(numList) #pass list to biggest()
 print(randomNum())
+
+# 第三題
+#編列學生的分數於串列
+score = int(input("請輸入學生的成績:"))
+list = []
+while score > 0:
+    list.append(score)
+    score = int(input("請輸入學生的成績:"))
+greatest = max(list) #找出最佳的學生分數Best
+#以不定數迴圈讀取學生的分數
+for i,point in enumerate(list):
+    if point >= greatest-5:
+        grade = "A"
+    elif point >= greatest-15:
+        grade = "B"
+    elif point >= greatest-25:
+        grade = "C" 
+    elif point >= greatest-35:
+        grade = "D"
+    else:
+        grade = "F"
+    print("第幾位學生:"+str(i+1)," ",
+        "該位學生成績:"+str(point)," ",
+        "其等級是:"+grade)
+
+# 第四題
+#以亂數產生器產生100個介於1到49的亂數
+import random
+time = 0
+list = []
+while time < 100:
+    number = random.randint(1,49)
+    list.append(number)
+    time += 1
+list.sort()
+#並計算每個數出現的個數
+for catergory in range(1,50,1):
+    print("第幾位數字:"+str(catergory),"出現幾次:"+str(list.count(catergory)))
+# print(len(list))
+
+# 第五題
+import random
+#在createNum函式以隨機亂數產生器產生100個1至50的數字，然後將其置放於numbers串列
+def createNum():
+    time = 0
+    numbers = []
+    while time < 100:
+        num = random.randint(1,50)
+        numbers.append(num)
+        time += 1
+    numbers.sort()
+    return mean(numbers)
+#之後再將此串列分別傳給mean函式以計算其平均值
+def mean(numbers):
+    average = sum(numbers)/len(numbers)
+    return average
+print(createNum())
+'''
+'''
+# TODO:9.5本章習題
+# 第一題
+lst44=[
+    [11,2,3,14],
+    [5,16,7,8],
+    [9,10,11,12],
+    [3,2,5,1]]
+smallest = 9999999 #先令最小值為9999999
+for col in range(len(lst44[0])):
+    sum = 0
+    for row in range(len(lst44)):
+        # print(lst44[row][col])
+        sum += lst44[row][col]
+    print("第幾行",col,"總和",sum)
+    if sum < smallest: #如果總和小於smallest，則將此元素指定給smallest
+        smallest = sum
+        idx_col = col
+print("最小值是多少",smallest)
+print("哪一行的總和最小",idx_col)
+
+# 第二題
+#提示使用者輸入二為串列的列數與行數，然後以亂數產生器產生數字並指定給串列
+import random
+lst=[]
+rows = int(input("How many rows:"))
+columns = int(input("How many columns:"))
+for i in range(rows):
+    lst.append([])
+    for col in range(columns):
+        number = random.randint(1,100)
+        lst[i].append(number)
+print("原始的串列:",lst)
+#將串列中若是偶數，則將其數字加倍
+for row in range(len(lst)):
+    # print(lst[row])
+    for col in range(len(lst[row])):
+        # print(lst[row][col])
+        if lst[row][col] % 2 == 0:
+            lst[row][col] = lst[row][col]*2
+print("新的串列:",lst)
+
+# 第三題
+#學生的答案(由亂數產生器產生)
+import random
+rows = int(input("有幾位學生:"))
+questions = int(input("有幾個問題:"))
+lst = []
+for i in range(rows):
+    lst.append([])
+    for j in range(questions):
+        answer = random.choice(["A","B","C","E","F"])
+        lst[i].append(answer)
+print(lst)
+#標準答案(由亂數產生器產生)
+standAns = []
+for q in range(questions):
+    standAns.append(random.choice(["A","B","C","E","F"]))
+print("正確答案",standAns)
+#核對答案
+for row in range(len(lst)):
+    # print(lst[row])
+    correct = 0
+    for col in range(len(lst[row])):
+        # print(lst[row][col])
+        if lst[row][col] == standAns[col]:
+            correct += 1
+    print("第幾位學生",row,"答對幾題",correct)
+
+# 第四題
+#產生一個6*6的二維串列，其元素不是0，就是1
+import random
+lst66 = []
+for i in range(0,6,1):
+    lst66.append([])
+    for j in range(0,6,1):
+        lst66[i].append(random.randint(0,1))
+print(lst66)
+#檢視每一行是否有偶數的1
+for rows in range(len(lst66)):
+    sum = 0
+    # cols = None
+    for cols in range(len(lst66[rows])):
+        sum += lst66[rows][cols]
+    # print(sum)
+    if sum % 2 == 0 and sum != 0:
+        print("第幾行有偶數的one:",rows,"\t","加總:",sum)
+print("-----"*20)
+#檢視每一列是否有偶數的1
+for col in range(len(lst66[0])):
+    sum = 0
+    for row in range(len(lst66)):
+        # print(lst66[row][col],end="")
+        sum += lst66[row][col]
+    if sum % 2 == 0 and sum != 0:
+        print("第幾列有偶數的one:",col,"\t","總和:",sum)
+'''
+'''
+# TODO:10.8本章習題
+# 第一題
+import codecs
+list = []
+for number in range(1,101,1):
+    list.append(number)
+# print(list)
+with codecs.open("example_10-8.txt","w") as file:
+    file.write(str(list))
+with codecs.open("example_10-8.txt","r") as file:
+    print(file.read())
+
+# 第二題
+import codecs,os
+#提示使用者輸入檔名
+fn = input("請輸入檔名及類型:")
+#檢查檔案是否存在
+if os.path.isfile(fn):
+    with codecs.open(fn,"r",encoding="utf-8") as file:
+        content = file.read()
+        print(content)
+    #提示使用者輸入欲被取代的字串及取代的字串
+    old_string = input("請輸入欲被取代的字串:")
+    new_string = input("請輸入取代的字串:")
+    new_content = content.replace(old_string,new_string)
+    with codecs.open(fn,"w",encoding="utf-8") as file:
+        file.write(new_content)
+    #印出最後的檔案內容
+    with codecs.open(fn,"r",encoding="utf-8") as file:
+        print(file.read())
+else:
+    print("檔案不存在")
 '''
 
 
+
+
+
+
+
+    
 
 
 
