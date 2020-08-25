@@ -569,7 +569,162 @@ if os.path.isfile(fn):
         print(file.read())
 else:
     print("檔案不存在")
+
+# 第三題
+import codecs,os
+#提示使用者輸入檔名
+fn = input("請輸入檔名及類型:")
+#檢查檔案是否存在
+if os.path.isfile(fn):
+    #讀取檔案內的分數
+    with codecs.open(fn,"r",encoding="utf-8") as file:
+        content = file.read()
+#分析檔案的內容
+content = content.split(", ")
+print(content)
+#計算
+total = 0
+for number in content:
+    # print(number)
+    total += int(number)
+print("計算其總和:",total)
+print("計算其平均數:",total/len(content))
+
+# 第五題
+try:
+    a = int(input("請輸入三角形的A邊:"))
+    b = int(input("請輸入三角形的B邊:"))
+    c = int(input("請輸入三角形的C邊:"))
+    A = a**2
+    B = b**2
+    C = c**2
+    if A+B>C and A+C>B and B+C>A :
+        print("是個三角形")
+    else:
+        print("RuntimeError")
+except ValueError:
+    print("ValueError")
 '''
+'''
+# TODO:11.5本章習題
+# 第二題
+import codecs
+#提示使用者輸入含有文字檔的檔名
+fn = input("請輸入含有文字檔的檔名:")
+#從中讀取字
+with codecs.open(fn,"r",encoding="utf-8") as file:
+    content = file.read()
+#「換行」→" "
+content = content.replace("\r\n"," ")
+#全部變為小寫
+content = content.lower()
+#字跟字之間切開成list
+content = content.split(" ")
+#由小到大排序
+content.sort()
+print("重複的單字",content)
+#顯使沒有重複的單字
+lst = []
+for letter in content:
+    if letter not in lst:
+        lst.append(letter)
+    else:
+        pass
+print("沒有重複的單字",lst)
+
+# 第三題
+#讀取任意個數的整數
+number = input("請輸入任意整數的個數:")
+#數字之間以空白隔開
+number = number.split( )
+# print("〔轉譯〕您所輸入的個數",number)
+dic = {}
+for n in number:
+    if n not in dic:
+        dic[n] = number.count(n)
+print("〔轉譯〕您所輸入的字典",dic)
+dic_tuple = sorted(dic.items(),key=lambda item: item[1],reverse=True)
+print("排序後的字典",dic_tuple)
+#找出出現最多次數的整數
+# max_number = max(dic,key=dic.get) #法一:返回最大值的键值
+max_value = max(dic.values())
+print("出現最多次數的整數:",end="") 
+for m , n in dic_tuple:
+    #若出現最多次數的整數不只一個時，則要一併印出
+    if n == max_value:
+        print(m,end=" ")
+
+# 第五題
+import os
+dic = {}
+#建立一個辭典選單
+def menu():
+    global x
+    print("辭典選單\r\n"
+        "(0)結束\r\n"
+        "(1)加入\r\n"
+        "(2)刪除\r\n"
+        "(3)顯示\r\n"
+        "(4)修改\r\n")
+    #讓使用者輸入選項後加以執行其相對應的動作
+    try:
+        x = int(input("請輸入辭典選單:"))
+        return x
+    except:
+        print("請輸入整數!!!")
+        print("===="*20)
+        menu()
+menu()
+while x != 0:
+    #加入的選項
+    if x == 1:
+        print("目前的字典:",dic)
+        keyword = input("請輸入欲加入的keys:")
+        if keyword not in dic:
+            values = input("請輸入欲加入的values:")
+            dic[keyword] = values
+            print("====="*20)
+            print("已加入該keys")
+        elif keyword in dic:
+            print("====="*20)
+            print("該keys已存在字典中")
+        print("====="*20)
+        menu()
+    #刪除的選項
+    elif x == 2:
+        print("目前的字典:",dic)
+        keyword = input("請輸入欲刪除的keys:")
+        if keyword in dic:
+            del dic[keyword]
+            print("已刪除該keys")
+        elif keyword not in dic:
+            print("====="*20)
+            print("該keys不存在字典中")
+        print("====="*20)
+        menu()
+    #顯示的選項
+    elif x == 3:
+        print("目前的字典:",dic)
+        print("====="*20)
+        menu()
+    #修改的選項
+    elif x == 4:
+        print("目前的字典:",dic)
+        keyword = input("請輸入欲修改的keys:")
+        if keyword in dic:
+            values = input("請輸入欲修改的values:")
+            dic[keyword] = values
+            print("已修改該keys")
+        elif keyword not in dic:
+            print("====="*20)
+            print("該keys不存在字典中")
+        print("====="*20)
+        menu()
+#結束的選項
+if x == 0:
+    os.system("cls")
+'''
+        
 
 
 
