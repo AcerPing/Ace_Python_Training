@@ -724,6 +724,126 @@ while x != 0:
 if x == 0:
     os.system("cls")
 '''
+'''
+# TODO:12.7本章習題
+# 第一題
+class Stack:
+    def __init__(self,items=[]):
+        self.items = items
+    #push函式用以加入一元素
+    def push(self,values):
+        self.items.append(values)
+        print(values,"已加入")
+    #isEmpty函式用以判斷是否為空的
+    def isEmpty(self):
+        return self.items == 0
+    #pop函式刪除元素
+    def pop(self):
+        if self.isEmpty() == True:
+            print("Empty")
+        else :
+            self.items.pop()
+    #getSize函式用以得到大小
+    def getSize(self):
+        return len(self.items)
+stackObj = Stack()
+for i in range(1,6):
+    stackObj.push(i)
+print(stackObj.items)
+
+# 第二、三、四題
+class Shape:
+    #其中Shape有一資料成員color，用以表示三角形的顏色
+    def __init__(self,color="Red"):
+        self.color = color
+    #取得三角形的顏色
+    # def getColor(self):
+    #     return self.color
+    # #印出三角形的顏色
+    # def printColor(self):
+    #     print(self.color)
+    #設定三角形的顏色
+    # def setColor(self,color):
+    #     self.color = color
+#Triangle的類別繼承Shape類別
+class Triangle(Shape):
+    #有三個三邊之資料成員
+    def __init__(self,a,b,c):
+        super().__init__()
+        self.length1 = a
+        self.length2 = b
+        self.length3 = c
+    #取得三邊的資料
+    def getColor(self):
+        return self.length1, self.length2, self.length3
+    #計算周長
+    def around(self):
+        return self.length1 + self.length2 + self.length3
+    #印出三角形顏色
+    def printColor(self):
+        print("三角形顏色:",self.color)
+    #設定三角形的顏色
+    def setColor(self,color):
+        self.color = color
+
+    def length(self):
+        print("邊長一:",self.length1,"邊長二:",self.length2,"邊長三:",self.length3)
+
+A = int(input("請輸入三角形的A邊:"))
+B = int(input("請輸入三角形的B邊:"))
+C = int(input("請輸入三角形的C邊:"))
+if A+B>C and A+C>B and B+C>A :
+    triangle = Triangle(a=A,b=B,c=C)
+    triangle.printColor()
+    triangle.setColor(color="blue")
+    triangle.printColor()
+    triangle.length()
+    print(triangle.around())
+else:
+    print("Invalid")
+    raise RuntimeError()
+'''
+'''
+# TODO:13.4本章習題
+# 第一題
+import numpy as np
+#產生一個從1到9的3*3矩陣
+np1 = np.array(range(1,10,1))
+np1 = np1.reshape([3,3])
+print("np1的矩陣:\r\n",np1)
+#產生一個從9到1的3*3矩陣
+np2 = np.array(range(9,0,-1))
+np2 = np2.reshape([3,3])
+print("np2的矩陣:\r\n",np2)
+#將此兩矩陣相乘並顯示結果
+print("相乘後的結果:\r\n",np1.dot(np2))
+
+# 第二題
+import numpy as np
+#產生一個從1到200之間偶數的10*10矩陣
+np2 = np.array(range(2,201,2))
+np2 = np2.reshape([10,10])
+print("np2偶數矩陣:\r\n",np2)
+print()
+#產生一個從1到200之間奇數的10*10矩陣
+np1 = np.array(range(1,201,2))
+np1 = np1.reshape([10,10])
+print("np1奇數矩陣:\r\n",np1)
+print()
+print("====="*20,"\r\n","交換後","\r\n","====="*20)
+print()
+#將此兩矩陣相互交換
+np1, np2 = np2, np1
+print("np2矩陣:\r\n",np2)
+print()
+print("np1矩陣:\r\n",np1)
+'''
+
+
+    
+
+
+
         
 
 
