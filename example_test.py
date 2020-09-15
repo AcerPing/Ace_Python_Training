@@ -87,6 +87,21 @@ print(a)
 print(sum(range(0,100)))
 '''
 '''
+#第八題
+import numpy as np
+np1 = np.array([6,5,4,3,2,1])
+np2 = np1.reshape(3,2)
+# print(np2)
+print(np2.sum(axis=1))
+'''
+'''
+#第九題
+import numpy as np
+np1 = np.array([6,5,4,3,2,1])
+# print(np1 % 3 == 1)
+print(np1[np1 % 3 == 1])
+'''
+'''
 # 第十題
 def a(V1):
     def b(V2):
@@ -837,16 +852,184 @@ np1, np2 = np2, np1
 print("np2矩陣:\r\n",np2)
 print()
 print("np1矩陣:\r\n",np1)
+
+# 第三題
+import pandas as pd
+#請列出學生資料名單的原始資料
+df = pd.DataFrame({"Name":["Nancy","Daisy","Bonnie","Vicky","John"],"Scores":[84,98,92,82,78]})
+print("原始資料:\r\n",df)
+#資料根據名字從小到大排序
+df = df.sort_values(by="Name")
+print("資料根據名字從小到大排序:\r\n",df)
+#資料根據分數從大到小排序
+df = df.sort_values(by="Scores",ascending=False)
+print("資料根據分數從大到小排序:\r\n",df)
+#分數高於90分的學生
+print("分數高於90分的學生:\r\n",df[df["Scores"]>90])
+
+# 第四題
+#使用pydataset裡面的"Titanic"資料集
+from pydataset import data
+import pandas as pd
+df = data("Titanic")
+print("pydataset裡面的\"Titanic\"資料集\r\n:",df)
+#去掉Class欄位和Freq欄位
+df = df.drop(columns=["Class","Freq"],axis=0)
+print("去掉Class欄位和Freq欄位:\r\n",df)
+#將"Sex"、"Age"和"Survived"分別改為"性別"、"年齡"和"是否存活"
+df = df.rename(columns={"Sex":"性別","Age":"年齡","Survived":"是否存活"})
+print("將\"Sex\"、\"Age\"和\"Survived\"分別改為\"性別\"、\"年齡\"和\"是否存活\:\r\n",df)
+#存活的男性
+print("存活的男性:\r\n",df[(df["性別"] == "Male") & (df["是否存活"] == "Yes")])
 '''
+'''
+# TODO:14.7本章習題
+# 第一題
+import numpy as np
+import matplotlib.pyplot as plt
+#產生兩組簡單的資料
+np1_x = np.array(range(1,201,2))
+np1_y = np1_x
+np2_x = np.array(range(2,201,2))
+np2_y = np2_x ** 2
+#以折現圖呈現結果
+plt.plot(np1_x,np1_y,'g-o',linewidth = 5)
+plt.plot(np2_x,np2_y)
+plt.xlabel("X_Label",size = 12)
+plt.ylabel("y_Label",size = 12)
+plt.title("14.7 Exercise 1",size = 24)
+plt.show()
 
+# 第二題
+from pydataset import data
+import matplotlib.pyplot as plt
+df = data("HairEyeColor")
+# print(df)
+# print(df["Hair"])
+print(df["Hair"].value_counts())
+plt.hist(df["Hair"])
+plt.title("Frequency of Hair Color",size = 24)
+plt.show()
+print(df["Eye"].value_counts())
+plt.hist(df["Eye"])
+plt.title("Frequency of Eye Color",size = 24)
+plt.show()
 
-    
+# 第四題
+from pydataset import data
+import matplotlib.pyplot as plt
+#利用pydataset中的"cars"資料集
+df = data("cars")
+print(df)        
+#以散佈圖將資料繪出，x軸為速度，y軸為剎車距離，透明度為0.5
+plt.scatter(df["speed"],df["dist"],alpha=0.5)
+plt.title("Speed and Stopping Distances of Cars",size = 16)
+plt.xlabel("speed",size = 12)
+plt.ylabel("dist",size = 12)
+plt.show()
 
+# 第五題
+from matplotlib import pyplot as plt
+data = [1,2.25,3,3.75]
+separated = (0,0,0.1,0)
+color = ["violet","yellow","skyblue","lightcoral"]
+#以圓形圖顯示上述資料 (突顯第三筆資料)
+plt.pie(data,colors=color,autopct='%1.1f%%',labels=data,explode=separated)
+plt.title("14.7 Exercise 5",size = 16)
+plt.axis("equal")
+plt.show()
+'''
+'''
+# TODO:16.6本章習題
+# 第一題 beautifulsoup應用
+from urllib.request import urlopen,Request
+from urllib.error import HTTPError
+from bs4 import BeautifulSoup
+import warnings
+#抓取台灣彩券的網頁原始碼 (HTML)
+url="https://www.taiwanlottery.com.tw/" #至台灣彩券首頁
+#披著羊皮進入服務台索要資料
+request = Request(url,headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"})
+#以urlopen開啟檔案
+with urlopen(request) as file:
+    data = file.read().decode("utf8")
+#解析網頁原始碼
+warnings.filterwarnings("ignore")
+html=BeautifulSoup(data) #beautifulsoup4分析工具→快速解析網頁HTML碼
+#find(找第一個符合條件的) ; find_all(找所有符合條件的)
+#find答案:1個 ; find_all:List
+rightdown = html.find("div",id="rightdown") #先找到下方區塊
+Bingo = rightdown.find("div",class_="contents_box01") #再找到BINGO BINGO區塊
+print("BINGO:")
+print("BINGO開出獎號:")
+for numbers in Bingo.find_all("div",class_="ball_tx ball_yellow"): #找出BINGO開出獎號
+    print(numbers.text)
+special_number = Bingo.find("div",class_="ball_red") #以及BINGO的超級獎號
+print("BINGO超級獎號:\r\n",special_number.text)
+print("--------------"*20)
+Lotto = rightdown.find_all("div",class_="contents_box02") #找出當期開獎結果的區塊
+Big_Lotto = Lotto[2] #再找到大樂透當期開獎結果的區塊
+print("大樂透區塊")
+print("大樂透開出獎號(開出順序):")
+for numbers in Big_Lotto.find_all("div",class_="ball_tx ball_yellow")[:6]: #找出大樂透開出獎號，且取得前六個黃球
+    print(numbers.text)
+print("大樂透開出獎號(大小順序):")
+for numbers in Big_Lotto.find_all("div",class_="ball_tx ball_yellow")[6:]: #找出大樂透開出獎號，且取得後六個黃球
+    print(numbers.text)
+special_number = Big_Lotto.find("div",class_="ball_red") #以及大樂透的特別號
+print("大樂透特別號:\r\n",special_number.text)
 
-
-        
-
-
+# 第二題  Selenium應用
+from selenium.webdriver import Chrome
+from selenium.webdriver.support.ui import Select
+from bs4 import BeautifulSoup
+import warnings
+import matplotlib.pyplot as plt
+import pandas as pd
+#TODO:利用selenium的Chrome套件
+driver = Chrome("./chromedriver")
+#打開網址
+driver.get("https://www.taiwanlottery.com.tw/lotto/Lotto649/history.aspx")
+driver.find_element_by_id("Lotto649Control_history_radYM").click() #勾選要以年月查詢的選項
+#爬台灣大樂透106年度的所有開獎號碼
+select_year = Select(driver.find_element_by_name("Lotto649Control_history$dropYear")) #找出選擇年份的標籤，選取106年
+select_year.select_by_value("106")
+number_list = [] #建立一個空字串，用以儲存所爬到的大樂透號碼
+for month in range(1,13,1): #找出選擇月份的標籤，選取當年度的所有月份
+    select_year = Select(driver.find_element_by_name("Lotto649Control_history$dropMonth"))
+    select_year.select_by_value(str(month))
+    driver.find_element_by_name("Lotto649Control_history$btnSubmit").click() #點擊『查詢』按鈕
+    #抓取網頁內容，解析網頁原始碼
+    warnings.filterwarnings("ignore")
+    html=BeautifulSoup(driver.page_source) #beautifulsoup4分析工具→快速解析網頁HTML碼
+    #find(找第一個符合條件的) ; find_all(找所有符合條件的)
+    #find答案:1個 ; find_all:List
+    # Big_Lotto = html.find("tr") #先找到下方區塊
+    Big_Lotto = html.find("table",id="Lotto649Control_history_dlQuery") #先找大樂透區域
+    Red_table = Big_Lotto.find_all("table",class_="table_org td_hm") #尋找大樂透的橘色區塊
+    for Red in Red_table:
+        all_number = Red.find_all("td",class_="td_w font_black14b_center")[:6] #抓取開出順序的每一個號碼
+        for number in all_number:
+            number_list.append(int(number.text))
+            # print(number.text)
+    Green_table = Big_Lotto.find_all("table",class_="table_gre td_hm") #尋找大樂透的綠色區塊
+    for Green in Green_table:
+        all_number = Green.find_all("td",class_="td_w font_black14b_center")[:6] #抓取開出順序的每一個號碼
+        for number in all_number:
+            number_list.append(int(number.text))
+            # print(number.text)
+print(number_list) #顯示所有抓取到的樂透號碼
+dic = {} #建立一個空字典，計算每個號碼的開獎次數
+for number in sorted(number_list):
+    if number not in dic: #如果該號碼沒有在字典中，則value為1
+        dic[number] = 1
+    else:
+        dic[number] = dic[number]+1 #如果該號碼已出現在字典中，則value +1
+print(dic)
+df = pd.DataFrame(list(dic.items()),columns = ["數字", "出現過的次數"]) #將樂透號碼及出現次數包裝成DataFrame
+print(df)
+driver.close() #關閉瀏覽器
+'''
 
 
 
