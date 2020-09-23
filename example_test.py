@@ -128,9 +128,8 @@ print("面積:",area)
 周長 = (width + height) * 2
 print("周長:",周長)
 '''
-
-# TODO:3-7本章習題
 '''
+# TODO:3-7本章習題
 #第一題
 a = int(input("請輸入三角形的一個邊:"))
 b = int(input("請輸入三角形的一個邊:"))
@@ -1158,5 +1157,183 @@ for block in blocks:
 while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
+'''
+'''
+# TODO:青年AI應用產業職業訓練計畫
+#第一題
+a = 100
+def fn():
+    a=1
+fn()
+print(a)
+a=0
+
+#第二題
+print(sum(range(10)))
+
+#第三題
+print(type("True"))
+
+#第四題
+a = 2
+b = 1
+if a>b:
+    b = a+1
+elif b>a:
+    print("A")
+else:
+    print("B")
+print("C")
+
+#第五題
+def a(V1):
+    def b(V2):
+        return V1**V2*V1
+    return b
+# print(a(6)(3)) #選項A
+# print(a(3)(4)) #選項B
+# print(a(4)(3)) #選項C
+# print(a(5)(3)) #選項D
+
+#第六題
+def f(V1):
+    if (V1 % 2 == 0):
+        return V1+1
+    return V1*2
+a = 1
+x = int(input("請輸入號碼:"))
+for _ in range(x):
+    a = f(a)
+print(a)
+
+#第七題
+arr = [1,2,3,4]
+for i in arr:
+    arr[i] = 1
+print(arr)
+
+#第八題
+import numpy as np
+np1 = np.array([1,2,3,4,5])
+print(np1*2+1)
+
+#第九題
+a = range(100)
+print(sum(a[:10]))
+print(sum(a[90:]))
+print(sum(a[:10])+(sum(a[90:])))
+
+#第十題
+class A():
+    def __init__(self):
+        self.name = "A"
+    def fly(self):
+        print(f"{self.name} Can Fly")
+class B():
+    def __init__(self):
+        self.name = "B"
+    def fly(self):
+        print(f"{self.name} Cannot Fly")
+class C(B,A):
+    def __init__(self,name):
+        self.name = name
+C("A").fly()
+
+#第十一題
+a = 10
+b = 20
+print("a =",a)
+print("b =",b)
+print("------")
+a,b = b,a
+print("a =",a)
+print("b =",b)
+'''
+'''
+# TODO:Python題目第+1期
+#第一題
+a = 100
+a += 100
+print(a)
+
+#第二題
+print(len(range(10)))
+
+#第三題
+print(type(10.0))
+
+#第四題
+a = 1
+b = 2
+c = 3
+if a > b > c:
+    print("A")
+elif b > a > c:
+    print("B")
+elif c > b > a:
+    print("C")
+else:
+    print("D")
+
+#第七題
+arr1 = [1,2,3,4]
+arr2 = list(range(5))
+print(arr2)
+print(arr1 == arr2)
+
+#第八題
+import numpy as np
+np1 = np.array([0,1,2,3,4])
+np2 = np.array(range(5))
+print(np2)
+print(np1 == np2)
+
+#第九題
+a = range(10)
+print(sum(a[:3]))
+print(sum(a[6:]))
+print(sum(a[:3])+(sum(a[6:])))
+
+
+#第十題
+class A():
+    def __init__(self):
+        self.name = "A"
+    def fly(self):
+        print(f"{self.name} Can Fly")
+class B(A):
+    def __init__(self):
+        self.name = "B"
+    def fly(self):
+        print(f"{self.name} Cannot Fly")
+class C(A,B):
+    def __init__(self,name):
+        self.name = name
+C("A").fly()
+
+#第十一題
+a = set("Hello World")
+print(a) 
+
+#第十二題
+def year(number):
+    if number % 4 ==0:
+        if number % 100 ==0:
+            if number % 400 != 0:
+                print("該年分不是閏年(有365天)")
+            else:
+                print("該年份為閏年(有366天)")
+        else:
+            print("該年份為閏年(有366天)")
+    else:
+        print("該年分不是閏年(有365天)")
+number = input("請輸入年份:")
+try:
+    number = int(number)
+    year(number=number)
+except ValueError:
+    print("ValueError:所輸入的非數字")
+finally:
+    print("已運算完畢")
 '''
 
