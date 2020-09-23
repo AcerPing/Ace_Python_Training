@@ -1029,16 +1029,134 @@ print(dic)
 df = pd.DataFrame(list(dic.items()),columns = ["數字", "出現過的次數"]) #將樂透號碼及出現次數包裝成DataFrame
 print(df)
 driver.close() #關閉瀏覽器
+
+# 第三題  利用Requests套件抓取政府AQI開放資料
+import requests
+import json
+#開放資料JSON格式連結
+url = "http://opendata2.epa.gov.tw/AQI.json"
+#發出Get請求
+response = requests.get(url)
+#內容→.text
+# print(response.text) #字典形式
+#將取得的內容轉換成JSON格式
+#文字→json.loads
+news = json.loads(response.text)  #字典形式
+#新北市每一個地區的相關訊息
+for i in range(0,81,1):
+    #判斷每一筆若為'新北市'則將相關訊息印出
+    if news[i]['County'] == '新北市':
+        print("地區名稱:"+news[i]['SiteName'])
+        print("AQI指數:"+news[i]['AQI'])
+        print("PM2.5指數:"+news[i]['PM2.5'])
+        print("PM10指數:"+news[i]['PM10'])
+        print("資料更新時間:"+news[i]['PublishTime'])
+        print()
+
+# 第六題  利用urllib套件抓取警廣即時路況資訊開放資料
+from urllib.request import urlopen
+import codecs
+import json
+url="https://od.moi.gov.tw/data/api/pbs" #警廣即時路況資訊資源連結
+response=urlopen(url) #以urlopen打開網頁
+# print(response.read()) #發現讀取的檔案是b'的原始檔案型式
+# print(json.load(response)) #以json.load做整理，將回傳訊息轉換成JSON格式，呈現出[]list及{}字典的型式
+# with codecs.open("practice_16-6-6.txt","w",encoding="utf-8") as file:
+#     file.write(str(json.load(response)))
+dic = json.load(response)['result'] #擷出資料
+for status in dic:
+    # print(status)
+    #輸出路況為"阻塞"、方向為"南下"
+    if status['direction'] == "南下" and status['roadtype'] == "阻塞":
+        print("今日的路況描述:"+status['comment'])
+        print("發生時間:"+status['modDttm'])
+        print("資料來源:"+status['srcdetail'])
+        print()
+
+# 第七題  請以Selenium和BeautifulSoup套件實作一網路爬蟲
+from selenium.webdriver import Chrome
+from selenium.webdriver.support.ui import Select
+import requests
+import warnings
+from bs4 import BeautifulSoup
+import pandas as pd
+#TODO:利用selenium的Chrome套件
+driver = Chrome("./chromedriver") #開啟chrome瀏覽器
+driver.get("https://tw.buy.yahoo.com/") #打開網址，前往台灣Yahoo電子商城
+driver.find_element_by_tag_name("input").send_keys("耳機") #尋找輸入搜尋文字的標籤，在該輸入方塊輸入"耳機"
+driver.find_element_by_partial_link_text("搜尋商品").click() #點擊『搜尋』按鈕
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+df = pd.DataFrame(columns=["Name", "Price"]) #預先準備DataFrame
+#TODO:方案二－皆由網址來搜尋
+# search = "耳機" #搜尋"耳機"
+# page="1" #搜尋結果第一頁
+# 台灣Yahoo電子商城商品搜尋頁面
+# url="https://tw.buy.yahoo.com/search/product?p="+search+"&pg="+page
+# r = requests.get(url) #讀取指定網址，抓取網頁內容
+# # print(r.status_code) → 200
+# # print(r.encoding) → utf-8
+# r.encoding="utf8" #讀取和設定編碼
+# warnings.filterwarnings("ignore")
+# html=BeautifulSoup(r.text) #beautifulsoup4分析工具→快速解析網頁HTML碼
+warnings.filterwarnings("ignore")
+html=BeautifulSoup(driver.page_source) #抓取網頁內容，beautifulsoup4分析工具→快速解析網頁HTML碼
+# print(html) #網頁原始碼形式
+#find(找第一個符合條件的) ; find_all(找所有符合條件的)
+#find答案:1個 ; find_all:List
+content = html.find("div",class_="main") #找到下方商品搜尋方塊
+items = content.find_all("li",class_="BaseGridItem__grid___2wuJ7 BaseGridItem__multipleImage___37M7b") #每一個商品
+for good in items: #針對每一筆商品進行下列動作
+    price = good.find("em",class_="BaseGridItem__price___31jkj") #商品價格
+    # print(type(price.text))
+    p = price.text.replace(",","").replace("$","") #資料清洗，將該筆商品價格轉換成整數型態(去掉","和"$")
+    # print(p)
+    if int(p) <= 1000:  #擷取商品價格小於等於1000
+        name = good.find("span",class_="BaseGridItem__title___2HWui") #商品名稱
+        # print(name.text,price.text)
+        series = pd.Series([name.text, price.text],index=["Name", "Price"]) #將每筆資料變成Series
+        df = df.append(series, ignore_index=True)  # 加入到DataFrame
+df = df.sort_values(by="Price") #將結果根據商品價格由小到大排序
+print(df)
+driver.close() #關閉瀏覽器
+
+# 第八題 請以Selenium和BeautifulSoup套件實作一網路爬蟲
+def selenium_pagedown():  
+    time.sleep(5)  
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+    time.sleep(5)
+    warnings.filterwarnings("ignore")
+    html=BeautifulSoup(driver.page_source) #beautifulsoup4分析工具→快速解析網頁HTML碼
+    content = html.find("div",class_="sc-1db29sy-0 iNTmnr") #找到下方商品搜尋方塊
+    blocks = content.find_all("article",class_="tgn9uw-0") #找到下方商品搜尋方塊
+    for block in blocks:
+        title = block.find("a",class_="tgn9uw-3 bbdvDs") #找到下方商品搜尋方塊
+        print(title.text)
+        print("https://www.dcard.tw/f"+title["href"])
+        print()
+from selenium.webdriver import Chrome
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
+import time
+import requests
+import warnings
+from bs4 import BeautifulSoup
+#TODO:利用selenium的Chrome套件
+driver = Chrome("./chromedriver") #開啟chrome瀏覽器
+driver.get("https://www.dcard.tw/f") #打開網址，前往Dcard網站
+driver.find_element_by_class_name("oo2grd-4").send_keys("Python") #尋找輸入搜尋文字的標籤，在該輸入方塊輸入"Python"
+driver.find_element_by_class_name("oo2grd-4").send_keys(Keys.ENTER) #按下"ENTER"鍵
+time.sleep(5) #等待前往搜尋結果頁面
+warnings.filterwarnings("ignore")
+html=BeautifulSoup(driver.page_source) #抓取網頁內容，beautifulsoup4分析工具→快速解析網頁HTML碼
+content = html.find("div",class_="sc-1db29sy-0 iNTmnr") #找到body
+blocks = content.find_all("article",class_="tgn9uw-0") #找到每一個文章方格
+for block in blocks:
+    title = block.find("a",class_="tgn9uw-3 bbdvDs") #截取文章標題
+    print(title.text)
+    print("https://www.dcard.tw/f"+title["href"]) #截取文章連結絕對路徑
+    print()
+while True:
+    selenium_pagedown()
+driver.close() #關閉瀏覽器
 '''
-
-
-
-
-
-    
-
-
-
-
-
 
