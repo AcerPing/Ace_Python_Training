@@ -3,14 +3,14 @@ import os
 import prettytable
 
 #起始畫面
-PASS=input("請輸入資料庫密碼：")
+PASS = input("請輸入資料庫密碼：")
 
 ##Port設定方法二:首先嘗試輸入資料庫的Port
 try:
-    PT=int(input("請輸入資料庫的Port：")) #文字轉數字
+    PT = int(input("請輸入資料庫的Port：")) #文字轉數字
 # 當輸入資料庫為空白的時後，會有ValueError的現象，則將PT設為None
 except ValueError: 
-    PT=None
+    PT = None
 
 os.system("cls") #清除剛輸入密碼及Port的畫面
 

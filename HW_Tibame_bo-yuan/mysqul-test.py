@@ -3,8 +3,8 @@ import os
 import prettytable
 
 #起始畫面－輸入密碼及Port
-PASS=input("請輸入資料庫密碼：")
-PT=input("請輸入資料庫的Port：")
+PASS = input("請輸入資料庫密碼：")
+PT = input("請輸入資料庫的Port：")
 
 localhost = "localhost"
 
@@ -15,7 +15,7 @@ if PT != None: #當Port有輸入代碼時
 os.system("cls") #清除剛輸入密碼及Port的畫面
 
 def table(): #定義函數
-    form=prettytable.PrettyTable(["編號","姓名","生日","地址"],encoding="utf8") #建立一個PrettyTable表格
+    form = prettytable.PrettyTable(["編號","姓名","生日","地址"],encoding="utf8") #建立一個PrettyTable表格
     c.execute("SELECT * FROM `member`")
     for d in c.fetchall():
         # print(d)
@@ -29,10 +29,10 @@ x = None #起始值x為None
 while x!="0": #當x不等於0時，顯示Menu
 
     #連結 MySQL
-    e=pymysql.connect(host="localhost",user="root",passwd=PASS ,
+    e = pymysql.connect(host="localhost",user="root",passwd=PASS ,
                     db="python_ai",charset="utf8",port=PT) 
     
-    c=e.cursor() #取得指令操作變數
+    c = e.cursor() #取得指令操作變數
 
     #當x不等於0時，顯示Menu
     print("(0) 離開程式")
@@ -42,7 +42,7 @@ while x!="0": #當x不等於0時，顯示Menu
     print("(4) 刪除會員資料")
 
     #輸入x資料
-    x=input("操作:")
+    x = input("操作:")
 
     #TODO:當輸入者按下"0"時，則離開程式
     if x == "0":
@@ -76,7 +76,7 @@ while x!="0": #當x不等於0時，顯示Menu
         table()
         #TODO:修改該會員資料
         print("\n")
-        number=int(input("請輸入代碼:"))
+        number = int(input("請輸入代碼:"))
         name = input("請輸入會員姓名:"),
         birthday = input("請輸入會員生日:"),
         address = input("請輸入會員地址：")

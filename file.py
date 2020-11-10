@@ -17,7 +17,7 @@
 #     file.write("6\n7\n8\n9\n10")
 
 sum=0
-with open("AceSummary.txt",mode="r",encoding="utf-8") as file:
+with open("AceSummary.txt",mode="a",encoding="utf-8") as file:
     for x in file: #一行一行的讀取出來
         x=int(x)
         sum=sum+x
