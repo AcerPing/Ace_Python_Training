@@ -1340,5 +1340,3 @@ while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
 '''
-
-
