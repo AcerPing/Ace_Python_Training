@@ -1340,3 +1340,4 @@ while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
 '''
+print("第{times}次".format(times=5))

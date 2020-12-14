@@ -20,3 +20,4 @@
 [0923/235708.165:ERROR:process_reader_win.cc(123)] NtOpenThread: {拒絕存取} 程序已請求存取一物件，但未被授與存取權。 (0xc0000022)
 [0923/235708.470:ERROR:exception_snapshot_win.cc(99)] thread ID 18556 not found in process
 [0923/235708.470:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: 嘗試存取現有的處理程序。 (0xc000010a)
+[1214/184323.760:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系統找不到指定的路徑。 (0x3)

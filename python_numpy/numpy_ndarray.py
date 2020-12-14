@@ -1,3 +1,4 @@
+#ndarray:多維陣列/陣列
 #載入numpy套件
 import numpy as np
 '''
