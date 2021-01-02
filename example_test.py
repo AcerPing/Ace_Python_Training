@@ -1340,5 +1340,4 @@ while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
 '''
-import time
-print(time.localtime())
+
