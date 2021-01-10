@@ -29,7 +29,7 @@ def getYesterday():
 yesterday = getYesterday()
 print ("昨天的時間：", yesterday)
 '''
-
+'''
 #TODO:字串轉換為時間和日期
 # 字串轉換為時間
 def strTodatetime(datestr, format):
@@ -40,10 +40,7 @@ print(strTodatetime("2014-3-1","%Y-%m-%d"))
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 print(type(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
 print(strTodatetime("2005-2-16","%Y-%m-%d")-strTodatetime("2004-12-31","%Y-%m-%d"))
-
-print("!!!!")
-print(time.strftime("%Y-%m-%d_%H-%M", time.localtime()))
-print("!!!!")
+'''
 '''
 #TODO:獲取日曆相關資訊
 # 獲取某個月的日曆，返回字串型別

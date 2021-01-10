@@ -12,9 +12,10 @@ msg["Subject"] = "test on python" #信件主題
 msg.add_alternative("<h1>Ace</h1>HoChePing", subtype = "html") #寄送比較多樣式的內容(html)
 #TODO:連線到SMTP的Server，驗證寄件人身分並發送郵件
 import smtplib
+from send_email_config import Mail_Account, Mail_Password
 #TODO:到網路上搜尋gamil smtp server 或是 yahoo smtp server
 server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-server.login("acerping0805@gmail.com","eawssczyunmvsivz") #帳號 / 密碼
+server.login(Mail_Account, Mail_Password) #帳號 / 密碼
 server.send_message(msg)
 server.close()
 

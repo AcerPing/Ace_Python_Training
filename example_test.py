@@ -1340,4 +1340,24 @@ while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
 '''
+# import webbrowser,os,time
+# os.system("taskkill /f /im excel.exe")
+# time.sleep(1)
+# test_excel = webbrowser.open("C:/Users/Ace/Desktop/test.xlsx",new=0, autoraise=True)
+# test_excel = webbrowser.open("C:/Users/Ace/Desktop/example.xlsx",new=0, autoraise=True)
+# os.system("cls")
+# test_excel = os.system("C:/Users/Ace/Desktop/2020年日本旅遊計劃書.xlsx")
+# os.close(test_excel)
+# time.sleep(5)
+# os.system("taskkill /f /im excel.exe")
+
+list = ["Ace","Ping","Ho","Che","Ping","Ace"]
+list.insert(2,"DBS")
+print(list)
+
+# for time in range(0,3):
+#     print(time)
+
+list.remove("Ace")
+print(list)
 
