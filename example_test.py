@@ -1220,7 +1220,7 @@ response = requests.get(url)
 #文字→json.loads
 news = json.loads(response.text)  #字典形式
 #新北市每一個地區的相關訊息
-for i in range(0,81,1):
+for i in range(0,len(news)-1,1):
     #判斷每一筆若為'新北市'則將相關訊息印出
     if news[i]['County'] == '新北市':
         print("地區名稱:"+news[i]['SiteName'])
@@ -1234,6 +1234,7 @@ for i in range(0,81,1):
 from urllib.request import urlopen
 import codecs
 import json
+import datetime
 url="https://od.moi.gov.tw/data/api/pbs" #警廣即時路況資訊資源連結
 response=urlopen(url) #以urlopen打開網頁
 # print(response.read()) #發現讀取的檔案是b'的原始檔案型式
@@ -1244,7 +1245,7 @@ dic = json.load(response)['result'] #擷出資料
 for status in dic:
     # print(status)
     #輸出路況為"阻塞"、方向為"南下"
-    if status['direction'] == "南下" and status['roadtype'] == "阻塞":
+    if status['direction'].strip() == "南下" and status['roadtype'].strip() == "阻塞" and status['happendate'].strip() == datetime.date.today().strftime("%Y-%m-%d"):
         print("今日的路況描述:"+status['comment'])
         print("發生時間:"+status['modDttm'])
         print("資料來源:"+status['srcdetail'])
@@ -1340,24 +1341,6 @@ while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
 '''
-# import webbrowser,os,time
-# os.system("taskkill /f /im excel.exe")
-# time.sleep(1)
-# test_excel = webbrowser.open("C:/Users/Ace/Desktop/test.xlsx",new=0, autoraise=True)
-# test_excel = webbrowser.open("C:/Users/Ace/Desktop/example.xlsx",new=0, autoraise=True)
-# os.system("cls")
-# test_excel = os.system("C:/Users/Ace/Desktop/2020年日本旅遊計劃書.xlsx")
-# os.close(test_excel)
-# time.sleep(5)
-# os.system("taskkill /f /im excel.exe")
 
-list = ["Ace","Ping","Ho","Che","Ping","Ace"]
-list.insert(2,"DBS")
-print(list)
 
-# for time in range(0,3):
-#     print(time)
-
-list.remove("Ace")
-print(list)
 
