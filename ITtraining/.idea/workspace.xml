@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e9aadac-d10a-4f23-9825-4e889b88317f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Practice_ITtrainging.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../example_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../example_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Practice_ITtrainging-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Practice_ITtrainging-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice_ITtrainging.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Practice_ITtrainging.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_project" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_project" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,6 +43,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -55,7 +55,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
