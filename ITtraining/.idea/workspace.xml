@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e9aadac-d10a-4f23-9825-4e889b88317f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Practice_ITtrainging-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Practice_ITtrainging-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Practice_ITtrainging.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Practice_ITtrainging.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_readlines.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result_readlines.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_project" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python_numpy/numpy_ndarray_shape.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_numpy/numpy_ndarray_shape.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

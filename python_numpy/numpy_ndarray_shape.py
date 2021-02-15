@@ -45,8 +45,6 @@ print(newdata)
 #TODO:初始化資料
 # data = np.zeros(18).reshape(3,6)
 # print(data)
-def numpy_shape():
-    global data
-    data = np.arange(10).reshape(2,5)
-    print(data)
-    print(data.T)
+data = np.arange(10).reshape(2,5)
+print(data)
+print(data.T)
