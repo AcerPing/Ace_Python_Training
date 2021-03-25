@@ -16,7 +16,7 @@ print(condition)
 filterData = data[condition]
 print(filterData)
 '''
-'''
+
 #TODO:篩選練習(DataFrame)
 data = pd.DataFrame({"name":["Ace","Angela","Rober"],"Salary":[900000,500000,300]})
 print(data)
@@ -26,4 +26,4 @@ condition = data["name"]=="Ace"
 print(condition)
 filterData = data[condition]
 print(filterData)
-'''
+
