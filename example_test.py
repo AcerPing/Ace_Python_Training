@@ -1341,24 +1341,4 @@ while True:
     selenium_pagedown()
 driver.close() #關閉瀏覽器
 '''
-import sys,os
-
-try:
-    # print(1/0)
-    # sys.exit()
-    os.system('cls')
-    raise Exception('test')
-except:
-    # sys.exit()
-    print('Bug')
-    raise Exception('for the PBIEP')
-finally:
-    print('cleanup')
-    print('\r\n'.join(['富強','民主','文明','和諧','自由','平等','公正','法治','愛國','敬業','誠信','友善']))
-
-
-
-
-
-
 
