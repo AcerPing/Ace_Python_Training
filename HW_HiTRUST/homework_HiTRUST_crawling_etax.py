@@ -23,6 +23,26 @@ import homework_HiTRUST_crawling_etax_def
 
 url="https://www.etax.nat.gov.tw/cbes/web/CBES113W1_1" #財政部稅務入口網
 
+# TODO: 讀取Config.txt設定檔
+# 參數設定
+CSV_File, csv_file_full_path = '', ''
+main_path = r'D:\Python_Summarize\Python_Training\HW_HiTRUST'
+f = open(os.path.join(main_path, 'Config.txt'), 'r', encoding='utf-8')
+for x in f:
+    if 'CSV_File=' in x:
+        CSV_File = x.strip().replace('CSV_File=', '').strip()
+        # 檢查檔案是否存在
+        csv_file_full_path = os.path.join(main_path, CSV_File)
+        if not os.path.isfile(os.path.join(main_path, CSV_File)):
+            print('CSV來源檔不存在')
+            raise Exception ('CSV SourceFile Error')
+        print('CSV_File set to: ' + CSV_File)
+        print('csv_file_full_path set to: ' + csv_file_full_path)
+
+if CSV_File == '' or csv_file_full_path == '':
+    print('CSV來源檔不存在')
+    raise Exception ('CSV SourceFile Error')
+
 #TODO:selenium爬取網站及驗證碼圖片
 options = Options() #options物件，主要用途為取消網頁中的彈出視窗，避免妨礙網路爬蟲的執行。
 options.add_argument("--disable-notifications")
@@ -89,7 +109,7 @@ Validation_Number = input("請輸入圖片驗證碼:")
 cv2.destroyAllWindows #關閉所有視窗
 
 #TODO:進入爬找資料
-tax_ID_number = homework_HiTRUST_crawling_etax_def.read_csv()
+tax_ID_number = homework_HiTRUST_crawling_etax_def.read_csv(csv_file_full_path=csv_file_full_path)
 driver.find_element_by_id("vatId").send_keys(str(tax_ID_number)) #尋找輸入搜尋文字的標籤，在該輸入方塊輸入統一編號號碼
 driver.find_element_by_id("captcha").send_keys(str(Validation_Number)) #尋找輸入搜尋文字的標籤，在該輸入方塊輸入統一編號號碼
 driver.find_element_by_id("captcha").send_keys(Keys.ENTER) #按下"ENTER"鍵

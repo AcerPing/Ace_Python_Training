@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e9aadac-d10a-4f23-9825-4e889b88317f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/202010.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Image_Crop.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Image_Crop.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/ScreenShot.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/ScreenShot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Validation_Number_Machine.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Validation_Number_Machine.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax_def.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax_def.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pandas_Basic.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pandas_Basic.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/matplot_example-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/matplot_example-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matplot_example.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/matplot_example.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../chromedriver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_project" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_project" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,6 +68,7 @@
         <option value="$PROJECT_DIR$/Command_Line_Arguments.py" />
         <option value="$PROJECT_DIR$/Practice_ITtrainging.ipynb" />
         <option value="$PROJECT_DIR$/Pandas_Basic.ipynb" />
+        <option value="$PROJECT_DIR$/matplot_example.ipynb" />
       </list>
     </option>
   </component>
@@ -73,6 +83,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -84,7 +95,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -309,13 +319,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/execute_test_name.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Practice_ITtrainging.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -327,6 +330,20 @@
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
           <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_test_name.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matplot_example.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="1" />
         </state>
       </provider>
     </entry>

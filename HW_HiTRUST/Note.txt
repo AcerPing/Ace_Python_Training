@@ -1,0 +1,2 @@
+XAMPP網址: http://localhost/phpmyadmin/sql.php?server=1&db=hitrust&table=homework_hitrust_crawling&pos=0
+CSV檔下載點: https://data.gcis.nat.gov.tw/od/detail?oid=75353060-3C3D-453E-8E5C-4ADDEAA8260F

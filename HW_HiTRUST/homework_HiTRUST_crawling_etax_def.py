@@ -2,8 +2,9 @@ import random
 import pandas as pd
 
 #TODO:下載商工開放平台的公司統編csv ，選擇一類下載
-def read_csv():
-    df = pd.read_csv('D:\Python_Summarize\Python_Training\HW_HiTRUST/202010.csv') #讀取csv檔
+def read_csv(csv_file_full_path):
+    # df = pd.read_csv('D:\Python_Summarize\Python_Training\HW_HiTRUST/202010.csv') #讀取csv檔
+    df = pd.read_csv(csv_file_full_path) #讀取csv檔
     print(df) #顯示公司設立登記清冊(月份)
     # print(df.shape[0]) #整張資料的長度(資料筆數)與寬度(欄位數量)
     # print(df["統一編號"]) #抓取"統一編號"的column
