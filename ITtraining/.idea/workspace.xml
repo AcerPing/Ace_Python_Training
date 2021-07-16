@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e9aadac-d10a-4f23-9825-4e889b88317f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/202010.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Image_Crop.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Image_Crop.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/ScreenShot.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/ScreenShot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Validation_Number_Machine.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Validation_Number_Machine.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax_def.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/homework_HiTRUST_crawling_etax_def.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/matplot_example-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/matplot_example-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matplot_example.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/matplot_example.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../chromedriver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_project" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purelovers/Config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../purelovers/Config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purelovers/Result_20210713_172705_RunMode_1.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purelovers/purelovers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purelovers/purelovers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purelovers/send_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purelovers/send_email.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
