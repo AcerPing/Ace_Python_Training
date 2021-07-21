@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e9aadac-d10a-4f23-9825-4e889b88317f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Image_Crop.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Image_Crop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/ScreenShot.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/ScreenShot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Validation_Number_Machine.png" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_HiTRUST/Validation Code/Validation_Number_Machine.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_project" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../purelovers/Config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../purelovers/Config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../purelovers/Result_20210713_172705_RunMode_1.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../purelovers/purelovers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purelovers/purelovers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../purelovers/send_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purelovers/send_email.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +88,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ace_Pycharm_Project/Facebook" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -221,6 +214,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1552" height="832" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -330,6 +324,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/matplot_example.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Facebook/FBrobot-mayorLin.ipynb" />
     <entry file="file://$PROJECT_DIR$/execute_test_name.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -337,10 +339,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matplot_example.ipynb">
+    <entry file="file://$PROJECT_DIR$/../../Ace_Pycharm_Project/Facebook/FBrobot-mayorLin.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
-          <selected id="1" />
+          <selected id="0" />
         </state>
       </provider>
     </entry>
