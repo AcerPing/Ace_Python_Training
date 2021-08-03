@@ -6,6 +6,9 @@ int_txt = '1 2 3 4 5'
 int_list = int_txt.split()
 # print(int_list)
 r = 0
+string = ''
 while r < len(int_list):
-    print(int(int_list[r])+1, end=' ')
+    # print(int(int_list[r])+1, end=' ')
+    string += str(int(int_list[r])+1) + ' '
     r += 1
+print(string.strip())

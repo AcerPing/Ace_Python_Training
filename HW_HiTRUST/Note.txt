@@ -1,2 +1,5 @@
 XAMPP網址: http://localhost/phpmyadmin/sql.php?server=1&db=hitrust&table=homework_hitrust_crawling&pos=0
 CSV檔下載點: https://data.gcis.nat.gov.tw/od/detail?oid=75353060-3C3D-453E-8E5C-4ADDEAA8260F
+財政部稅務入口網: https://www.etax.nat.gov.tw/cbes/web/CBES113W1_1
+商工登記服務入口: https://findbiz.nat.gov.tw/fts/query/QueryBar/queryInit.do
+TGOS查詢入口: https://www.tgos.tw/tgos/Web/Address/TGOS_Address.aspx

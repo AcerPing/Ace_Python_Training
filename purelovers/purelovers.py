@@ -12,12 +12,16 @@ from urllib.request import urlopen, Request, urlretrieve
 import warnings
 import datetime
 import xlwt
+import xlrd
 import traceback
 import time
+import shutil
 
 # 自訂函式庫
 from send_email import Send_Mail
 
+############################################################################################################################################
+############################################################################################################################################
 #Custom Function Defination
 def ErrorMessenger(e, fileName='', lineNum=0, funcName='', Custom_Err_Msg=''):
     error_class = e.__class__.__name__ #取得錯誤類型
@@ -33,6 +37,104 @@ def ErrorMessenger(e, fileName='', lineNum=0, funcName='', Custom_Err_Msg=''):
     else:
         errMsg = "File \"{}\", line {}, in {}: [{}] {}".format(fileName, lineNum, funcName, error_class, detail)
     return errMsg
+
+def ExcelRead(filename, TargetSheetName, key_column):
+    ModuleObj = {'Status':'fail',
+                 'Custom_Err_Msg': '',
+                 'SourceExcelList': [],
+                 'key_column': [],
+                 'key_column_id': [],
+                 'max_row': '',
+                 'max_col' : '',
+                 'WB':[],
+                 'WS':[],
+                 'Error': {'e_detail': '', 'e_fileName': '', 'e_lineNum': '', 'e_funcName': ''}}
+    try:
+        SourceExcelList = []
+        #Read Xlrd
+        print('Loading Excel:')
+        print(filename)
+        wb = xlrd.open_workbook(filename)
+        print('Worksheets loaded')
+        print(wb.sheet_names())        
+        
+        #表名搜尋
+        sheet_names = wb.sheet_names()
+        SheetFound = False
+        SheetCount = 0
+        SheetNo = 0
+        for sheet in wb.sheet_names():
+            if sheet == TargetSheetName:
+                SheetFound = True
+                SheetNo = SheetCount
+            SheetCount = SheetCount +1
+        if SheetFound == False:
+            ModuleObj = {'Custom_Err_Msg': 'Cannot find sheet name 「' + TargetSheetName + '」.'}
+            del wb, ws
+            return ModuleObj 
+        print('Sheet 「' + TargetSheetName + '」 Found:', SheetFound, SheetCount, SheetNo)
+        ws = wb.sheet_by_name(sheet_names[SheetNo])
+        print('Columns: [%s] Rows: [%s]' % (ws.ncols, ws.nrows))
+        MaxRow = ws.nrows
+        MaxCol = ws.ncols
+        
+        key_column_id = {}
+        for item in key_column:
+            key_column_id[item] = ''
+        
+        #欄位比對
+        MaxCheck = len(key_column)
+        KeyColCount = 0
+        ColCount = 0
+        for i in range(0, MaxCheck):
+            for item in key_column:
+                if ws.cell(0, i).value.strip() == key_column[item]:
+                    key_column_id[item] = ColCount
+                    KeyColCount = KeyColCount + 1
+                    print(key_column_id[item], item)
+            ColCount = ColCount + 1
+        print(KeyColCount, MaxCheck)
+        if KeyColCount < MaxCheck:
+            MissedCol = ''
+            for item in key_column_id:
+                MissedCol = MissedCol + '「 ' + item + '」'
+            print('Excel File missing columns as below, please check.\n' + MissedCol)
+            ModuleObj = {'Custom_Err_Msg': 'Excel File missing columns as below, please check.\n' + MissedCol}
+            del wb, ws
+            return ModuleObj
+        
+        # print(key_column)
+        # print(KeyColCount, MaxCheck)
+        # print(key_column_id)
+        
+        # 讀取表資料內容
+        for i in range(1, MaxRow):
+            CrntRow = ws.row_values(i)
+            SourceExcelList.append(CrntRow)
+        print('Sheet 「' + TargetSheetName + '」 Loaded. ColumnCount: ', MaxCol, ' RowCount: ', MaxRow, ' DataCapture: ', len(SourceExcelList))
+        ModuleObj['Status'] = 'success'
+        ModuleObj['SourceExcelList'] = SourceExcelList
+        ModuleObj['key_column'] = key_column
+        ModuleObj['key_column_id'] = key_column_id
+        ModuleObj['max_row'] = MaxRow
+        ModuleObj['max_col'] = MaxCol
+        ModuleObj['WB'] = wb
+        ModuleObj['WS'] = ws
+        # ModuleObj = {'Status':'success', 'SourceExcelList': SourceExcelList, 'key_column': key_column, 'key_column_id': key_column_id}
+        del wb, ws
+        return ModuleObj
+    except Exception as e:
+        ModuleObj['Error'] = e
+        ModuleObj['Error']['e_class'] = e.__class__.__name__ #取得錯誤類型
+        ModuleObj['Error']['e_detail'] = e.args[0] #取得詳細內容
+        cl, exc, tb = sys.exc_info() #取得Call Stack
+        lastCallStack = traceback.extract_stack(tb)[-1] #取得Call Stack的最後一筆資料
+        ModuleObj['Error']['e_fileName'] = lastCallStack[0] #取得發生的檔案名稱
+        ModuleObj['Error']['e_lineNum'] = lastCallStack[1] #取得發生的行號
+        ModuleObj['Error']['e_funcName'] = lastCallStack[2] #取得發生的函數名稱
+        return ModuleObj
+############################################################################################################################################
+############################################################################################################################################ 
 
 main_path = r'D:\Python_Summarize\Python_Training\purelovers'
 os.chdir(main_path)
@@ -119,11 +221,12 @@ if __name__ == '__main__':
             f = open("Bug.txt", "w", encoding='utf-8') # 以覆寫模式開啟檔案
             alredy_download = 0 #檢查是否全部都下載，初始值設為0
             CrntRow = 0 # Excel結果Log檔參數
+            GirlList_Dic = {} # 字典{人名:URL}
             for each_girl in girlList:
                 CrntRow += 1 # Excel結果Log檔參數
                 #清除參數
                 content, girl_name, img = None, None, None
-                girl_name, download_img_path, data_type, save_path = "", "", "", ""
+                girl_name, download_img_path, data_type, save_path = '', '', '', ''
                 Notes = ''
                 
                 try: #錯誤處理
@@ -136,10 +239,14 @@ if __name__ == '__main__':
                     else: 
                         Notes = Notes + 'girl_name HYPERLINK Error, NO "/kansai/shop/587/girl/".'
                         raise Exception('Download Error') #不是要找尋的資料 → 換下一筆 #continue
+                    
+                    # 字典{人名:URL}
+                    GirlList_Dic[girl_name.text.split(u'\xa0')[0].strip()] = girl_name.get('href') 
+                    
                     name = girl_name.text.split(u'\xa0')[0].strip()
                     age = girl_name.text.split(u'\xa0')[1].strip().replace('(','').replace(')','').strip()
                     girl_name = girl_name.text.strip().replace(u'\xa0', u' ').strip() #名字 / 年齡
-                    ws1.write(CrntRow, list(KeyColumn.keys()).index('Age'), age)
+                    ws1.write(CrntRow, list(KeyColumn.keys()).index('Age'), age)       
     
                     #圖片 #取得所有圖片連結
                     img = each_girl.find("table",class_='girlList-img girlList-').find('a')
@@ -160,7 +267,7 @@ if __name__ == '__main__':
                     save_path = os.path.join(save_dir, (girl_name + data_type))
                     
                     # 檢查檔案是否存在
-                    if os.path.exists(save_path): os.remove(save_path) #若檔案已存在則刪除
+                    if os.path.exists(save_path): os.remove(save_path) # 檢查檔案是否存在
                     urlretrieve(download_img_path, save_path) #利用urlretrieve下載檔案
                     print(girl_name)
                     alredy_download += 1 #檢查是否全部都下載，每下載一次就+1
@@ -190,13 +297,109 @@ if __name__ == '__main__':
             f.close()# 關閉檔案
             wb1.save(SourceFilePath_Excel) # 儲存Excel結果Log檔
             if not len(girlList) == alredy_download: raise Exception('Download Error')
+        
+        if RunMode == '3':
+            print('=======Excel_todo_list Renew=======')
+            ModuleObj = ExcelRead(SourceFilePath_Excel, SourceFile_ExcelSheet, KeyColumn)
+            print(ModuleObj)
+            if ModuleObj['Status'] == 'success':
+                print('ExcelRead ModuleObj = ' + ModuleObj['Status'])
+            else:
+                print('ExcelRead ModuleObj = ' + ModuleObj['Status'])
+                if ModuleObj['Custom_Err_Msg'] == '':
+                    e = ModuleObj['Error']
+                    Custom_Err_Msg = ModuleObj['Custom_Err_Msg']
+                    ErrorMessenger(e['e'], e['e_fileName'], e['e_lineNum'], e['e_funcName'])
+                else: Custom_Err_Msg = ModuleObj['Custom_Err_Msg']
+                raise Exception
+            Excel_todo_list = ModuleObj['SourceExcelList']
+            key_column = ModuleObj['key_column']
+            key_column_id = ModuleObj['key_column_id']
+            MaxRow = ModuleObj['max_row']
+            MaxCol = ModuleObj['max_col']
+            print(Excel_todo_list)
+            print('====='*10)
             
-            # 寄發E-mail訊息
-            edt2 = datetime.datetime.now().strftime("%Y%m%d_%H%M%S") 
-            body = 'RPA process completed at' + edt2 + '\nProcess End.\n' 
-            Subject='purelovers.py'
-            Send_Mail(To=To, Cc=Cc, Subject='purelovers.py', text=body)
+        if RunMode == '3':
             
+            CrntRow = 0
+            for i in range(0, len(Excel_todo_list)):
+                CrntRow = i + 1
+                Checker_Notes, Save_Path = '',''
+                Crnt_Skip = False
+                
+                # Check Maker Status
+                if Excel_todo_list[i][key_column_id['Resutl1_Status']] == 'Error':
+                    print('Skp Maker "Error" data.')
+                    continue
+
+                elif Excel_todo_list[i][key_column_id['Resutl1_Status']] != 'Completed':
+                    print('Skp Maker not completed data.')
+                    continue
+
+                print('◎ Handle Data' + str(CrntRow) + '/' + str(len(Excel_todo_list)) + '')
+                Name = Excel_todo_list[i][key_column_id['Name']].strip()
+                print(Name)
+                print('▼ Start from ' + str(datetime.datetime.now()) + '▼')
+
+                if Name not in GirlList_Dic.keys():
+                    ws1.write(CrntRow, key_column_id['Resutl2_Status'], 'Error'.strip())
+                    ws1.write(CrntRow, key_column_id['RPA2_Notes'], '"URL" Not Found'.strip())
+                    continue
+                
+                # 檢查檔案是否存在
+                Save_Path = os.path.join(save_dir,Name)
+                if os.path.isdir(Save_Path): shutil.rmtree(Save_Path) #若檔案已存在則刪除
+                os.mkdir(Save_Path)
+                
+                try:
+                    #向網站索要資料
+                    URL = r'https://www.purelovers.com' + GirlList_Dic[Name]
+                    request = Request(URL,headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"})
+                    #以urlopen開啟檔案
+                    with urlopen(request) as file: data = file.read().decode("utf8")
+                    #解析網頁原始碼
+                    warnings.filterwarnings("ignore")
+                    html=BeautifulSoup(data) #beautifulsoup4分析工具→快速解析網頁HTML碼   
+                    
+                    girl_profile = html.find('article', id='girlProfileArea', class_='clearfix')
+                    
+                    # 分析左邊大頭照區域
+                    left_area = girl_profile.find('div', id='girlProfileArea-left')
+                    photo_group = left_area.find('div', id='girlPhoto')
+                    main_photo = photo_group.find('td', id='girl-main-photo')
+                    photo_number = main_photo.get('colspan')
+                    
+                    #下載圖片
+                    already_download = 0
+                    for number in range(1, int(photo_number)+1):
+                        girl_photos = main_photo.find('span',id=f'images_large_{number}').find('img',alt=Name)
+                        download_link = r'https:' + girl_photos.get('src')
+                        Img_Save_Path = os.path.join(Save_Path, f'{Name}_{number}.' + download_link.split('.')[-1]) 
+                        urlretrieve(download_link, Img_Save_Path) #利用urlretrieve下載檔案
+                        if not r'no_girl_image' in download_link: already_download += 1
+                        download_link, Img_Save_Path = '',''   
+                    # 檢查全部照片是否皆以下載
+                    if not already_download == int(photo_number): raise Exception('Download Error')
+                    
+                    ws1.write(CrntRow, key_column_id['Resutl2_Status'], 'Completed'.strip())
+                    ws1.write(CrntRow, key_column_id['RPA2_Notes'], Checker_Notes + ' [@ ' + str(datetime.datetime.now()) + ']')
+                
+                except KeyboardInterrupt:
+                    sys.exit(1)
+        
+                except:
+                    # Excel結果Log檔案
+                    ws1.write(CrntRow, key_column_id['Resutl2_Status'], 'Error'.strip())
+                    ws1.write(CrntRow, key_column_id['RPA2_Notes'], Checker_Notes + ' [@ ' + str(datetime.datetime.now()) + ']')
+                    continue
+
+        # 寄發E-mail訊息
+        edt2 = datetime.datetime.now().strftime("%Y%m%d_%H%M%S") 
+        body = 'RPA process completed at' + edt2 + '\nProcess End.\n' 
+        Subject='purelovers.py'
+        Send_Mail(To=To, Cc=Cc, Subject='purelovers.py', text=body)
+        
     except Exception as erel:
         print('Enter Controller Exception Handler.')
         try:print('main Custom_Err_Msg:', '『' + Custom_Err_Msg + '』')
