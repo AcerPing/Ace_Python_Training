@@ -298,6 +298,9 @@ if __name__ == '__main__':
             wb1.save(SourceFilePath_Excel) # 儲存Excel結果Log檔
             if not len(girlList) == alredy_download: raise Exception('Download Error')
         
+        ########################################################################################################################################################################
+        ########################################################################################################################################################################
+        
         if RunMode == '3':
             print('=======Excel_todo_list Renew=======')
             ModuleObj = ExcelRead(SourceFilePath_Excel, SourceFile_ExcelSheet, KeyColumn)
@@ -319,7 +322,10 @@ if __name__ == '__main__':
             MaxCol = ModuleObj['max_col']
             print(Excel_todo_list)
             print('====='*10)
-            
+        
+        ########################################################################################################################################################################
+        ########################################################################################################################################################################
+        
         if RunMode == '3':
             
             CrntRow = 0
@@ -336,9 +342,20 @@ if __name__ == '__main__':
                 elif Excel_todo_list[i][key_column_id['Resutl1_Status']] != 'Completed':
                     print('Skp Maker not completed data.')
                     continue
-
+                
+                CrntRow = i + 1
+                class Crnt_Data:
+                    Name = str(Excel_todo_list[i][key_column_id['Name']]).strip()
+                    Age = str(Excel_todo_list[i][key_column_id['Age']]).strip()
+                    Resutl1_Status = str(Excel_todo_list[i][key_column_id['Resutl1_Status']]).strip()
+                    RPA1_Notes = str((Excel_todo_list[i][key_column_id['RPA1_Notes']])).strip()
+                    Resutl2_Status = str(Excel_todo_list[i][key_column_id['Resutl2_Status']]).strip()
+                    RPA2_Notes = str(Excel_todo_list[i][key_column_id['RPA2_Notes']]).strip()
+                print(Crnt_Data.__dict__) 
+                
+                Name = Crnt_Data.Name
+                
                 print('◎ Handle Data' + str(CrntRow) + '/' + str(len(Excel_todo_list)) + '')
-                Name = Excel_todo_list[i][key_column_id['Name']].strip()
                 print(Name)
                 print('▼ Start from ' + str(datetime.datetime.now()) + '▼')
 
@@ -346,9 +363,9 @@ if __name__ == '__main__':
                     ws1.write(CrntRow, key_column_id['Resutl2_Status'], 'Error'.strip())
                     ws1.write(CrntRow, key_column_id['RPA2_Notes'], '"URL" Not Found'.strip())
                     continue
-                
+
                 # 檢查檔案是否存在
-                Save_Path = os.path.join(save_dir,Name)
+                Save_Path = os.path.join(save_dir, Name + f' ({Crnt_Data.Age})')
                 if os.path.isdir(Save_Path): shutil.rmtree(Save_Path) #若檔案已存在則刪除
                 os.mkdir(Save_Path)
                 
@@ -380,19 +397,27 @@ if __name__ == '__main__':
                         if not r'no_girl_image' in download_link: already_download += 1
                         download_link, Img_Save_Path = '',''   
                     # 檢查全部照片是否皆以下載
-                    if not already_download == int(photo_number): raise Exception('Download Error')
+                    if not already_download == int(photo_number): 
+                        Checker_Notes = 'Download Error'
+                        raise Exception('Download Error')
+                    
+                    
                     
                     ws1.write(CrntRow, key_column_id['Resutl2_Status'], 'Completed'.strip())
                     ws1.write(CrntRow, key_column_id['RPA2_Notes'], Checker_Notes + ' [@ ' + str(datetime.datetime.now()) + ']')
                 
                 except KeyboardInterrupt:
+                    wb1.save(SourceFilePath_Excel) # 儲存Excel結果Log檔
                     sys.exit(1)
         
                 except:
                     # Excel結果Log檔案
                     ws1.write(CrntRow, key_column_id['Resutl2_Status'], 'Error'.strip())
                     ws1.write(CrntRow, key_column_id['RPA2_Notes'], Checker_Notes + ' [@ ' + str(datetime.datetime.now()) + ']')
+                    wb1.save(SourceFilePath_Excel) # 儲存Excel結果Log檔
                     continue
+                
+                wb1.save(SourceFilePath_Excel) # 儲存Excel結果Log檔
 
         # 寄發E-mail訊息
         edt2 = datetime.datetime.now().strftime("%Y%m%d_%H%M%S") 
