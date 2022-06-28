@@ -1,12 +1,9 @@
 資料錯誤，無法下載
-71. カグヤ (20)
-Notes: No IMG. "//contents.purelovers.com/common/img/". No "//contents.purelovers.com/upload/girl/".
+72. 'ヒメ(25)'
+Notes: girl_name 'ヒメ(25)' noImage.
 資料錯誤，無法下載
-83. アリス (21)
-Notes: No IMG. "//contents.purelovers.com/common/img/". No "//contents.purelovers.com/upload/girl/".
+77. 'ピーチ(21)'
+Notes: girl_name 'ピーチ(21)' noImage.
 資料錯誤，無法下載
-111. ミサト (32)
-Notes: No IMG. "//contents.purelovers.com/common/img/". No "//contents.purelovers.com/upload/girl/".
-資料錯誤，無法下載
-112. トワ (27)
-Notes: No IMG. "//contents.purelovers.com/common/img/". No "//contents.purelovers.com/upload/girl/".
+82. 'ピノ(22)'
+Notes: girl_name 'ピノ(22)' noImage.
