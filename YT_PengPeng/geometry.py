@@ -1,3 +1,5 @@
+# YT 彭彭的課程；Python入門教學課程；Python Package 封包的設計與使用
+
 import module.geometry
 result=module.geometry.distance(x1=2,x2=10,y1=0,y2=0)
 print("distance",result)
