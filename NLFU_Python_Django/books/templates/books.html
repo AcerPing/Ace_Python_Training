@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Books
+{% endblock  %}
+
+{% block body %}
+
+    <!-- 我是註解：剪下此區域的 alert 到 alert.html -->
+    <!-- with 帶入參數 --> 
+    {% include 'alert.html' with alert_content='Hello World'  %} <!-- alert_mode='danger' --> 
+
+    <h1>書籍詳情</h1>
+    <hr>
+    <p>書籍：{{ id }}</p>
+{% endblock  %}

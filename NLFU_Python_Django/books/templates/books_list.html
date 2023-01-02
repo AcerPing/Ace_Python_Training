@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Document BookList
+{% endblock  %}
+
+{% block body %}
+    
+    <!-- 我是註解：剪下此區域的 alert 到 alert.html -->
+    <!-- with 帶入參數 -->
+    {% include 'alert.html' with alert_content=message alert_mode='success' %}
+
+    <ul class="list-group">
+        
+        <li class="list-group-item list-group-item-dark">
+            總數: {{ items | length}}
+        </li>
+        
+        {% for item in items%}
+            {% if item|divisibleby:2 %}
+                <li class="list-group-item">{{ item }}</li>
+            {% endif %}
+        {% empty%}
+            <li class="list-group-item">沒有資料</li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}
